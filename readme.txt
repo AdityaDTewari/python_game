@@ -1,1 +1,1 @@
-Learning python by building projects. Building an game and familiarizing with the python environment.
+Learning python by building projects. Building a game and familiarizing with the python environment.

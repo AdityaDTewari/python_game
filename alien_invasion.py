@@ -14,7 +14,7 @@ def run_game():
     pygame.display.set_caption("Alien Invasion")
 
     #creating the ship
-    ship = Ship(screen)
+    ship = Ship(screen, ai_settings)
 
     #set background color
     bg_color = (230, 230, 230) #light grey
@@ -26,7 +26,7 @@ def run_game():
         
         #updating the ship centerx
         ship.update()
-        
+
         #redraw the screen for each iteration and making the drawn circle visible
         gf.update_screen(ai_settings, screen, ship)
 

@@ -2,9 +2,10 @@ import pygame
 
 class Ship():
 
-    def __init__(self, screen):
+    def __init__(self, screen, ai_settings):
         """for ship initializing and setting the start position"""
         self.screen = screen
+        self.ai_settings = ai_settings
 
         #load the ship and set the rect
         self.image = pygame.image.load('images/spaceship.bmp')
@@ -15,17 +16,23 @@ class Ship():
         self.rect.centerx = self.screen_rect.centerx #working with the center attibute
         self.rect.bottom = self.screen_rect.bottom
 
+        #for storing the decimal value
+        self.center = float(self.rect.centerx)
+
         #movement flags
         self.moving_right = False
         self.moving_left = False
     
     def update(self):
         """using the flag to update the position of the ship"""
-        #moving the ship to the right by increasing the centrex attribute
+        #updaing the center value and not the rect
         if self.moving_right:
-            self.rect.centerx +=1
+            self.center += self.ai_settings.ship_speed_factor
         if self.moving_left:
-            self.rect.centerx -=1
+            self.center -= self.ai_settings.ship_speed_factor
+        
+        #updating the rect from center
+        self.rect.centerx = self.center
     
     def blitme(self):
         """draw the ship at the current location"""
