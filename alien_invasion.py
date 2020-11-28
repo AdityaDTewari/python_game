@@ -34,6 +34,12 @@ def run_game():
         #calling the update for each sprite in the group
         bullets.update()
 
+        #getting rid of bullets that reach the top of the screen
+        for bullet in bullets.copy():
+            if bullet.rect.bottom <= 0:
+                bullets.remove(bullet)
+        #print(len(bullets))
+
         #redraw the screen for each iteration and making the drawn circle visible
         gf.update_screen(ai_settings, screen, ship, bullets)
 
