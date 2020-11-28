@@ -12,7 +12,9 @@ def check_keydown_events(event, ship, ai_settings, screen, bullets):
         ship.moving_left = True
     elif event.key == pygame.K_SPACE:
         #create a bullet and add it to the group
-        fire_bullet(ai_settings, screen, ship, bullets)    
+        fire_bullet(ai_settings, screen, ship, bullets)
+    elif event.key == pygame.K_q:
+        sys.exit()
 
 def check_keyup_events(event, ship):
     """updating the key releases"""
@@ -33,7 +35,7 @@ def check_events(ship, ai_settings, screen, bullets):
         elif event.type == pygame.KEYUP: #to know when the key is released
            check_keyup_events(event, ship)
 
-def update_screen(ai_settings, screen, ship, bullets):
+def update_screen(ai_settings, screen, ship, bullets, alien):
     """for redrawing the screen"""
     screen.fill(ai_settings.bg_color)
 
@@ -42,6 +44,7 @@ def update_screen(ai_settings, screen, ship, bullets):
         bullet.draw_bullet()
 
     ship.blitme()
+    alien.blitme()
 
     #making the drawn circle vivible
     pygame.display.flip()
