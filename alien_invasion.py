@@ -43,7 +43,7 @@ def run_game():
         bullets.update()
 
         #getting rid of bullets that reach the top of the screen and update position
-        gf.update_bullets(bullets)
+        gf.update_bullets(aliens, bullets)
         #print(len(bullets))
 
         #updating the position of aliens in the fleet
