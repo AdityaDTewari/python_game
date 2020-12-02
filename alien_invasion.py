@@ -46,6 +46,9 @@ def run_game():
         gf.update_bullets(bullets)
         #print(len(bullets))
 
+        #updating the position of aliens in the fleet
+        gf.update_aliens(ai_settings, aliens)
+
         #redraw the screen for each iteration and making the drawn circle visible
         gf.update_screen(ai_settings, screen, ship, bullets, aliens)
 
