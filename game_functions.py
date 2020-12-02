@@ -50,7 +50,7 @@ def update_screen(ai_settings, screen, ship, bullets, aliens):
     #making the drawn circle vivible
     pygame.display.flip()
 
-def update_bullets(aliens, bullets):
+def update_bullets(ai_settings, screen, ship, aliens, bullets):
     """update the bullet position and get rid of old bullets"""
     bullets.update()
 
@@ -59,7 +59,16 @@ def update_bullets(aliens, bullets):
             bullets.remove(bullet)
     
     #check for any bullets that have hit aliens
-    collisions = pygame.sprite.groupcollide(bullets, aliens, True, True) # both True for removing bullet and alien respectively after collision
+    check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets)
+
+def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
+    """respond to bullet alien collision"""
+    collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+
+    if len(aliens) == 0:
+        #destroy existing fleet and create new fleet
+        bullets.empty()
+        create_fleet(ai_settings, screen, ship, aliens)
 
 def fire_bullet(ai_settings, screen, ship, bullets):
     """fire a bullet if under limit"""
