@@ -40,18 +40,19 @@ def run_game():
         #calling the class to check for events
         gf.check_events(ship, ai_settings, screen, bullets)
         
-        #updating the ship centerx
-        ship.update()
+        if stats.game_active:
+            #updating the ship centerx
+            ship.update()
 
-        #calling the update for each sprite in the group
-        bullets.update()
+            #calling the update for each sprite in the group
+            bullets.update()
 
-        #getting rid of bullets that reach the top of the screen and update position
-        gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
-        #print(len(bullets))
+            #getting rid of bullets that reach the top of the screen and update position
+            gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
+            #print(len(bullets))
 
-        #updating the position of aliens in the fleet
-        gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
+            #updating the position of aliens in the fleet
+            gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
 
         #redraw the screen for each iteration and making the drawn circle visible
         gf.update_screen(ai_settings, screen, ship, bullets, aliens)
