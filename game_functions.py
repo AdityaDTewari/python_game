@@ -37,7 +37,7 @@ def check_events(ship, ai_settings, screen, bullets):
         elif event.type == pygame.KEYUP: #to know when the key is released
            check_keyup_events(event, ship)
 
-def update_screen(ai_settings, screen, ship, bullets, aliens):
+def update_screen(ai_settings, screen, stats, ship, bullets, aliens, play_button):
     """for redrawing the screen"""
     screen.fill(ai_settings.bg_color)
 
@@ -48,8 +48,13 @@ def update_screen(ai_settings, screen, ship, bullets, aliens):
     ship.blitme()
     aliens.draw(screen) #each element is drawn in a group
 
+    #draw the play button if the game is inactive
+    if not stats.game_active:
+        play_button.draw_button()
+
     #making the drawn circle vivible
     pygame.display.flip()
+
 
 def update_bullets(ai_settings, screen, ship, aliens, bullets):
     """update the bullet position and get rid of old bullets"""
