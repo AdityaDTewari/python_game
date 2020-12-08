@@ -5,6 +5,7 @@ from settings import Settings
 from ship import Ship
 #from alien import Alien
 import game_functions as gf
+from game_stats import GameStats
 
 def run_game():
     #initializing the game and creating a screen
@@ -14,6 +15,9 @@ def run_game():
 
     screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height)) #Surface creation
     pygame.display.set_caption("Alien Invasion")
+
+    #instance to store game statistics
+    stats = GameStats(ai_settings)
 
     #creating the ship
     ship = Ship(screen, ai_settings)
@@ -47,7 +51,7 @@ def run_game():
         #print(len(bullets))
 
         #updating the position of aliens in the fleet
-        gf.update_aliens(ai_settings, aliens)
+        gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
 
         #redraw the screen for each iteration and making the drawn circle visible
         gf.update_screen(ai_settings, screen, ship, bullets, aliens)
