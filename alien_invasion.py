@@ -7,6 +7,7 @@ from ship import Ship
 import game_functions as gf
 from game_stats import GameStats
 from button import Button
+from scoreboard import Scoreboard
 
 def run_game():
     #initializing the game and creating a screen
@@ -22,6 +23,9 @@ def run_game():
 
     #instance to store game statistics
     stats = GameStats(ai_settings)
+
+    #creating an instance to store game statistics and create a scoreboard
+    sb = Scoreboard(ai_settings, screen, stats)
 
     #creating the ship
     ship = Ship(screen, ai_settings)
@@ -52,13 +56,13 @@ def run_game():
             bullets.update()
 
             #getting rid of bullets that reach the top of the screen and update position
-            gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
+            gf.update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets)
             #print(len(bullets))
 
             #updating the position of aliens in the fleet
             gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
 
         #redraw the screen for each iteration and making the drawn circle visible
-        gf.update_screen(ai_settings, screen, stats, ship, bullets, aliens, play_button)
+        gf.update_screen(ai_settings, screen, stats, sb, ship, bullets, aliens, play_button)
 
 run_game()
